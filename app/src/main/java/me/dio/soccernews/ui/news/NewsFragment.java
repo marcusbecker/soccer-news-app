@@ -43,17 +43,31 @@ public class NewsFragment extends Fragment {
         });
     }
 
+    private void loadCachedNews() {
+        newsViewModel.loadCachedNews().observe(getViewLifecycleOwner(), localNews -> {
+            binding.rvNews.setLayoutManager(new LinearLayoutManager(getContext()));
+            binding.rvNews.setAdapter(new NewsAdapter(localNews, updatedNews -> {
+                newsViewModel.saveNews(updatedNews);
+                loadCachedNews();
+            }));
+        });
+    }
+
     private void observeStates() {
         newsViewModel.getState().observe(getViewLifecycleOwner(), state -> {
             switch (state) {
                 case DOING:
                     binding.srlNews.setRefreshing(true);
+                    binding.tvInfo.setVisibility(View.GONE);
                     break;
                 case DONE:
                     binding.srlNews.setRefreshing(false);
+                    binding.tvInfo.setVisibility(View.GONE);
                     break;
                 case ERROR:
+                    loadCachedNews();
                     binding.srlNews.setRefreshing(false);
+                    binding.tvInfo.setVisibility(View.VISIBLE);
                     Snackbar.make(binding.srlNews, R.string.error_network, Snackbar.LENGTH_SHORT).show();
             }
         });
@@ -64,6 +78,5 @@ public class NewsFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
-
 
 }

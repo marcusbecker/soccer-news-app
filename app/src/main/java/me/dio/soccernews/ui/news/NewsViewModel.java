@@ -8,17 +8,19 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import me.dio.soccernews.data.SoccerNewsRepository;
 import me.dio.soccernews.domain.News;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.internal.EverythingIsNonNull;
 
 public class NewsViewModel extends ViewModel {
 
     public enum State {
-        DOING, DONE, ERROR;
+        DOING, DONE, ERROR
     }
 
     private final MutableLiveData<List<News>> news = new MutableLiveData<>();
@@ -42,12 +44,15 @@ public class NewsViewModel extends ViewModel {
             }
 
             @Override
-            public void onFailure(@NonNull Call<List<News>> call, Throwable error) {
-                //FIXME Tirar o printStackTrace quando formos para produção!
-                error.printStackTrace();
+            public void onFailure(@EverythingIsNonNull Call<List<News>> call, Throwable error) {
+                Logger.getLogger(this.getClass().getName()).info("Network Error");
                 state.setValue(State.ERROR);
             }
         });
+    }
+
+    public LiveData<List<News>> loadCachedNews() {
+        return SoccerNewsRepository.getInstance().getLocalDb().newsDao().loadAllNews();
     }
 
     public void saveNews(News news) {

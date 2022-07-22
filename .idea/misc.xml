@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Work/Desktop/Bootcamp Santander/Android/entrega1/soccer-news-app/app/src/main/res/layout/fragment_favorites.xml" value="0.25729166666666664" />
+        <entry key="..\:/Users/Work/Desktop/Bootcamp Santander/Android/entrega1/soccer-news-app/app/src/main/res/layout/fragment_news.xml" value="0.33" />
+        <entry key="..\:/Users/Work/Desktop/Bootcamp Santander/Android/entrega1/soccer-news-app/app/src/main/res/layout/news_item.xml" value="0.33611111111111114" />
         <entry key="..\:/Users/falvo/AndroidStudioProjects/SoccerNews/app/src/main/res/drawable/ic_favorite.xml" value="0.11" />
         <entry key="..\:/Users/falvo/AndroidStudioProjects/SoccerNews/app/src/main/res/drawable/ic_soccer.xml" value="0.11" />
         <entry key="..\:/Users/falvo/AndroidStudioProjects/SoccerNews/app/src/main/res/layout/activity_main.xml" value="0.2" />

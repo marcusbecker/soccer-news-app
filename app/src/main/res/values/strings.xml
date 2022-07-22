@@ -11,4 +11,5 @@
     <string name="txt_open_link">Open Link</string>
 
     <string name="error_network">Network error.</string>
+    <string name="offline_mode">Modo offline</string>
 </resources>

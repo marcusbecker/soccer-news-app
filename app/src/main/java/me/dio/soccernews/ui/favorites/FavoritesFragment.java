@@ -24,17 +24,21 @@ public class FavoritesFragment extends Fragment {
         binding = FragmentFavoritesBinding.inflate(inflater, container, false);
 
         loadFavoriteNews();
+        binding.srlNews.setOnRefreshListener(this::loadFavoriteNews);
 
         return binding.getRoot();
     }
 
     private void loadFavoriteNews() {
+        binding.srlNews.setRefreshing(true);
         favoritesViewModel.loadFavoriteNews().observe(getViewLifecycleOwner(), localNews -> {
             binding.rvNews.setLayoutManager(new LinearLayoutManager(getContext()));
             binding.rvNews.setAdapter(new NewsAdapter(localNews, updatedNews -> {
                 favoritesViewModel.saveNews(updatedNews);
                 loadFavoriteNews();
             }));
+
+            binding.srlNews.setRefreshing(false);
         });
     }
 

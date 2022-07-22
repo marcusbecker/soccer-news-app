@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase;
 
 import me.dio.soccernews.domain.News;
 
-@Database(entities = {News.class}, version = 1)
+@Database(entities = {News.class}, version = 2)
 public abstract class SoccerNewsDb extends RoomDatabase {
     public abstract NewsDao newsDao();
 }
