@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Soccer News</string>
 
-    <string name="title_news">News</string>
+    <string name="title_news">Women\'s Soccer News</string>
     <string name="title_favorites">Favorites</string>
 
     <string name="cd_news_image">News image.</string>
